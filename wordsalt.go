@@ -25,6 +25,10 @@ var (
 		"LOGGED_IN_SALT",
 		"NONCE_SALT",
 	}
+
+	// generateKeyFunc is a variable that holds the actual key generation function.
+	// This can be modified for testing.
+	generateKeyFunc = generateKey
 )
 
 // GenerateWordPressKeys generates a map of WordPress security keys.
@@ -32,7 +36,7 @@ func GenerateWordPressKeys() map[string]string {
 	keys := make(map[string]string)
 
 	for _, name := range keyNames {
-		key, err := generateKey(keyLen) // generateKey returns an error now
+		key, err := generateKeyFunc(keyLen)
 		if err != nil {
 			panic(fmt.Errorf("failed to generate key %s: %w", name, err))
 		}
