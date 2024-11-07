@@ -1,4 +1,4 @@
-package main
+package wordsalt
 
 import (
 	"crypto/rand"
@@ -64,12 +64,4 @@ func generateKey(length int) (string, error) {
 	}
 
 	return string(key), nil
-}
-
-func main() {
-	keys := GenerateWordPressKeys()
-
-	for _, name := range keyNames {
-		fmt.Printf("define('%s', '%s');\n", name, keys[name])
-	}
 }
