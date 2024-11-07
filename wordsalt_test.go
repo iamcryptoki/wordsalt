@@ -108,22 +108,22 @@ func TestGenerateKeyRandomness(t *testing.T) {
 // TestGenerateKeyPanicOnError tests that GenerateWordPressKeys
 // panics when generateKey returns an error.
 func TestGenerateKeyPanicOnError(t *testing.T) {
-	// Save the original generateKeyFunc so we can restore it later
+	// Save the original generateKeyFunc so we can restore it later.
 	originalGenerateKeyFunc := generateKeyFunc
 	defer func() { generateKeyFunc = originalGenerateKeyFunc }()
 
-	// Simulate a failure in generating a key (force an error)
+	// Simulate a failure in generating a key (force an error).
 	generateKeyFunc = func(length int) (string, error) {
 		return "", fmt.Errorf("simulated error in key generation")
 	}
 
-	// Use defer and recover to check for panic
+	// Use defer and recover to check for panic.
 	defer func() {
 		if r := recover(); r == nil {
 			t.Errorf("Expected panic due to error in generateKey, but got none")
 		}
 	}()
 
-	// Call GenerateWordPressKeys, which will panic due to the error in generateKey
+	// Call GenerateWordPressKeys, which will panic due to the error in generateKey.
 	GenerateWordPressKeys()
 }
