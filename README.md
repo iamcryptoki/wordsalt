@@ -47,7 +47,10 @@ import "github.com/iamcryptoki/wordsalt"
 Then, call the `GenerateWordPressKeys()` function to generate a map of key names and values:
 
 ```go
-keys := wordsalt.GenerateWordPressKeys()
+keys, err := wordsalt.GenerateWordPressKeys()
+if err != nil {
+    fmt.Println("Error generating keys:", err)
+}
 
 for name, key := range keys {
     fmt.Printf("define('%s', '%s');\n", name, key)
