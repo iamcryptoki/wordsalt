@@ -32,19 +32,19 @@ var (
 )
 
 // GenerateWordPressKeys generates a map of WordPress security keys.
-func GenerateWordPressKeys() map[string]string {
+func GenerateWordPressKeys() (map[string]string, error) {
 	keys := make(map[string]string)
 
 	for _, name := range keyNames {
 		key, err := generateKeyFunc(keyLen)
 		if err != nil {
-			panic(fmt.Errorf("failed to generate key %s: %w", name, err))
+			return nil, fmt.Errorf("failed to generate key %s: %w", name, err)
 		}
 
 		keys[name] = key
 	}
 
-	return keys
+	return keys, nil
 }
 
 // generateKey generates a random key with the specified length and allowed characters.

@@ -9,7 +9,10 @@ import (
 // TestGenerateWordPressKeys tests that GenerateWordPressKeys
 // produces the expected number of keys and valid key values.
 func TestGenerateWordPressKeys(t *testing.T) {
-	keys := GenerateWordPressKeys()
+	keys, err := GenerateWordPressKeys()
+	if err != nil {
+		t.Fatalf("GenerateWordPressKeys() returned an error: %v", err)
+	}
 
 	// Verify that the number of keys is correct (should be equal to len(keyNames)).
 	if len(keys) != len(keyNames) {
@@ -48,7 +51,10 @@ func TestGenerateWordPressKeys(t *testing.T) {
 
 // TestGenerateKeyLength tests that the key generated has the correct length.
 func TestGenerateKeyLength(t *testing.T) {
-	keys := GenerateWordPressKeys()
+	keys, err := GenerateWordPressKeys()
+	if err != nil {
+		t.Fatalf("GenerateWordPressKeys() returned an error: %v", err)
+	}
 
 	// Check that each key has the expected length.
 	for _, name := range keyNames {
@@ -62,7 +68,10 @@ func TestGenerateKeyLength(t *testing.T) {
 // TestGenerateKeyCharacterSet tests that all characters in the generated key
 // are from the allowed character set.
 func TestGenerateKeyCharacterSet(t *testing.T) {
-	keys := GenerateWordPressKeys()
+	keys, err := GenerateWordPressKeys()
+	if err != nil {
+		t.Fatalf("GenerateWordPressKeys() returned an error: %v", err)
+	}
 
 	// Verify that each character in each key is from the allowed character set.
 	for _, name := range keyNames {
