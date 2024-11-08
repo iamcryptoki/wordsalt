@@ -14,7 +14,7 @@ This Go module provides a simple function to generate random security keys for W
 ## Installation
 
 ```sh
-go install github.com/iamcryptoki/wordsalt@v1.0.0
+go install github.com/iamcryptoki/wordsalt@v1.0.1
 ```
 
 ## Usage
